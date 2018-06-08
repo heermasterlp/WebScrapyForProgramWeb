@@ -4,10 +4,10 @@ import time
 from bs4 import BeautifulSoup
 
 
-class ProgrammableWebScrapy:i
+class ProgrammableWebScrapy:
 
     def __init__(self):
-        self.browser = webdriver.Firefox(executable_path="/Users/liupeng/Documents/PythonProjects/geckodriver")
+        self.browser = webdriver.Firefox(executable_path="D:\ProjectFolder\geckodriver.exe")
 
     def __del__(self):
         self.browser.close()
@@ -41,101 +41,110 @@ class ProgrammableWebScrapy:i
 
         # Title
         title_div = html.find('div', class_='node-header')
-        title = title_div.find('h1').text
-        # print('Title: ' + title)
+        try:
 
-        # Tags
+            title = title_div.find('h1').text
+            # print('Title: ' + title)
+
+            # Tags
 
 
-        # description
-        description_div = html.find('div', {'id': 'tabs-header-content'})
-        description = description_div.text.strip()
-        # print('Description: ' + repr(description))
+            # description
+            description_div = html.find('div', {'id': 'tabs-header-content'})
+            description = description_div.text.strip()
+            # print('Description: ' + repr(description))
 
-        # table contents
-        myTabContent_div = html.find('div', {'id': 'myTabContent'})
+            # table contents
+            myTabContent_div = html.find('div', {'id': 'myTabContent'})
 
-        field_divs = myTabContent_div.find_all('div', {'class': 'field'})
-        # print('field div len: %d ' % len(field_divs))
-        myTabContentStr = ''
-        for field_div in field_divs:
-            label = field_div.find('label').text
-            span = field_div.find('span')
-            if 'API Endpoint' in label:
-                myTabContentStr += '"APIEndpoint":"' + span.text + '",'
-            elif 'API Portal / Home Page' in label:
-                myTabContentStr += '"APIPortalHomePage":"' + span.text + '",'
-            elif 'Primary Category' in label:
-                myTabContentStr += '"PrimaryCategory":"' + span.text + '",'
-            elif 'Secondary Categories' in label:
-                myTabContentStr += '"SecondaryCategories":"' + span.text + '",'
-            elif 'API Provider' in label:
-                myTabContentStr += '"APIProvider":"' + span.text + '",'
-            elif 'SSL Support' in label:
-                myTabContentStr += '"SSLSupport":"' + span.text + '",'
-            elif 'API Forum / Message Boards' in label:
-                myTabContentStr += '"APIForumMessageBoards":"' + span.text + '",'
-            elif 'Twitter URLr' in label:
-                myTabContentStr += '"TwitterURL":"' + span.text + '",'
-            elif 'Support Email Address' in label:
-                myTabContentStr += '"SupportEmailAddress":"' + span.text + '",'
-            elif 'Interactive Console URLr' in label:
-                myTabContentStr += '"InteractiveConsoleURL":"' + span.text + '",'
-            elif 'Authentication Model' in label:
-                myTabContentStr += '"AuthenticationModel":"' + span.text + '",'
-            elif 'Is the API Design/Description Non-Proprietary' in label:
-                myTabContentStr += '"IstheAPIDesign":"' + span.text + '",'
-            elif 'Scope' in label:
-                myTabContentStr += '"Scope":"' + span.text + '",'
-            elif 'Device Specific' in label:
-                myTabContentStr += '"DeviceSpecific":"' + span.text + '",'
-            elif 'Docs Home Page UR' in label:
-                myTabContentStr += '"DocsHomePageUR":"' + span.text + '",'
-            elif 'Architectural Style' in label:
-                myTabContentStr += '"ArchitecturalStyle":"' + span.text + '",'
-            elif 'Supported Request Formats' in label:
-                myTabContentStr += '"SupportedRequestFormats":"' + span.text + '",'
-            elif 'Supported Response Formats' in label:
-                myTabContentStr += '"SupportedResponseFormats":"' + span.text + '",'
-            elif 'Is This an Unofficial API' in label:
-                myTabContentStr += '"IsThisanUnofficialAPI":"' + span.text + '",'
-            elif 'Restricted Access' in label:
-                myTabContentStr += '"RestrictedAccess":"' + span.text + '",'
+            field_divs = myTabContent_div.find_all('div', {'class': 'field'})
+            # print('field div len: %d ' % len(field_divs))
+            myTabContentStr = ''
+            for field_div in field_divs:
+                label = field_div.find('label').text
+                span = field_div.find('span')
+                if 'API Endpoint' in label:
+                    myTabContentStr += '"APIEndpoint":"' + span.text + '",'
+                elif 'API Portal / Home Page' in label:
+                    myTabContentStr += '"APIPortalHomePage":"' + span.text + '",'
+                elif 'Primary Category' in label:
+                    myTabContentStr += '"PrimaryCategory":"' + span.text + '",'
+                elif 'Secondary Categories' in label:
+                    myTabContentStr += '"SecondaryCategories":"' + span.text + '",'
+                elif 'API Provider' in label:
+                    myTabContentStr += '"APIProvider":"' + span.text + '",'
+                elif 'SSL Support' in label:
+                    myTabContentStr += '"SSLSupport":"' + span.text + '",'
+                elif 'API Forum / Message Boards' in label:
+                    myTabContentStr += '"APIForumMessageBoards":"' + span.text + '",'
+                elif 'Twitter URLr' in label:
+                    myTabContentStr += '"TwitterURL":"' + span.text + '",'
+                elif 'Support Email Address' in label:
+                    myTabContentStr += '"SupportEmailAddress":"' + span.text + '",'
+                elif 'Interactive Console URLr' in label:
+                    myTabContentStr += '"InteractiveConsoleURL":"' + span.text + '",'
+                elif 'Authentication Model' in label:
+                    myTabContentStr += '"AuthenticationModel":"' + span.text + '",'
+                elif 'Is the API Design/Description Non-Proprietary' in label:
+                    myTabContentStr += '"IstheAPIDesign":"' + span.text + '",'
+                elif 'Scope' in label:
+                    myTabContentStr += '"Scope":"' + span.text + '",'
+                elif 'Device Specific' in label:
+                    myTabContentStr += '"DeviceSpecific":"' + span.text + '",'
+                elif 'Docs Home Page UR' in label:
+                    myTabContentStr += '"DocsHomePageUR":"' + span.text + '",'
+                elif 'Architectural Style' in label:
+                    myTabContentStr += '"ArchitecturalStyle":"' + span.text + '",'
+                elif 'Supported Request Formats' in label:
+                    myTabContentStr += '"SupportedRequestFormats":"' + span.text + '",'
+                elif 'Supported Response Formats' in label:
+                    myTabContentStr += '"SupportedResponseFormats":"' + span.text + '",'
+                elif 'Is This an Unofficial API' in label:
+                    myTabContentStr += '"IsThisanUnofficialAPI":"' + span.text + '",'
+                elif 'Restricted Access' in label:
+                    myTabContentStr += '"RestrictedAccess":"' + span.text + '",'
 
-        myTabContentStr = myTabContentStr[:-1]
+            myTabContentStr = myTabContentStr[:-1]
 
-        result = '"Title":"' + title.strip() + '","Description":"' + description.strip().replace('\n\n',
-                                                                                                 ' ') + '",' + myTabContentStr.strip()
-        return result
+            result = '"Title":"' + title.strip() + '","Description":"' + description.strip().replace('\n\n',
+                                                                                                     ' ') + '",' + myTabContentStr.strip()
+            return result
+        except:
+            return ''
 
 
 if __name__ == '__main__':
     basic_url = 'https://www.programmableweb.com/category/all/apis?page='
-    total_pages = 689
+    total_pages = 695
 
     programWeb = ProgrammableWebScrapy()
 
     all_a_list = []
 
-    with open("ProgrammWebScrapy.txt", "w") as w:
-        w.write("[\n")
+    with open("ProgrammWebScrapy.txt", "a") as w:
+        # w.write("[\n")
 
-        for i in range(total_pages):
+        for i in range(690, total_pages):
             print("Page: %d" % i)
             url = basic_url + str(i)
+
             page_source = programWeb.get_page(url)
 
             a_list = programWeb.parse_html(page_source)
 
             for a_item in a_list:
-                page_source = programWeb.get_page(a_item)
+                try:
+                    page_source = programWeb.get_page(a_item)
 
-                json_item = programWeb.parse_single_html(page_source)
-                json_item = "{" + json_item + "},\n"
-
-                w.write(json_item)
+                    json_item = programWeb.parse_single_html(page_source)
+                    if json_item == '':
+                        continue
+                    json_item = "{" + json_item + "},\n"
+                    w.write(json_item)
+                except:
+                    continue
                 time.sleep(2)
-            time.sleep(2)
+            time.sleep(3)
         w.write("]\n")
     # print("All a list len: %d" % len(all_a_list))
 
